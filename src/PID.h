@@ -10,12 +10,17 @@ public:
   double i_error;
   double d_error;
 
+  double cte_prev;
+  bool has_prev;
+  double cte_sum;
+  long long count;
+  
   /*
   * Coefficients
   */ 
-  double Kp;
-  double Ki;
-  double Kd;
+  double taup;
+  double taui;
+  double taud;
 
   /*
   * Constructor
@@ -41,6 +46,7 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
 };
 
 #endif /* PID_H */
