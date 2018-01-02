@@ -14,6 +14,7 @@ public:
   bool has_prev;
   double cte_sum;
   long long count;
+  double cte_ave;
   
   /*
   * Coefficients
@@ -21,6 +22,14 @@ public:
   double taup;
   double taui;
   double taud;
+
+  /*
+  * Twiddle params
+  */
+  double dp;
+  double di;
+  double dd;
+  double step;
 
   /*
   * Constructor
@@ -46,6 +55,8 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
+  void UpdateParams(double cte);
 
 };
 
