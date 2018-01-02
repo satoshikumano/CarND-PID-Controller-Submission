@@ -1,5 +1,6 @@
 #include "PID.h"
 #include <math.h>
+#include <iostream>
 
 using namespace std;
 
@@ -26,6 +27,7 @@ void PID::Init(double taup, double taud, double taui) {
 }
 
 void PID::UpdateParams(double cte) {
+    cout << "dp: " << dp << endl;
     if (dp + dd + di < 0.0001) {
         return;
     }
