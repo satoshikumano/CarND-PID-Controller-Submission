@@ -34,9 +34,9 @@ int main()
 
   PID pid;
   PID pid_speed;
-  double target_speed  = 10.;
+  double target_speed  = 20.;
   // TODO: Initialize the pid variable.
-  pid.Init(0.3, 0.4, 0.0001);
+  pid.Init(0.05, 0.6, 0.0001);
   pid_speed.Init(0.2, 0.2, 0.);
 
   h.onMessage([&pid, &pid_speed, &target_speed](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
