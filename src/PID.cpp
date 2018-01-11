@@ -14,12 +14,13 @@ PID::~PID() {}
 
 void PID::Init(double taup, double taud, double taui) {
     this->cte_sum = 0.;
-    this->cte_ave = 0.;
+    // this->cte_ave = 0.;
+    this->cte_best = 100000.;
     this->count = 0;
     this->has_prev = false;
     this->dp = 0.01;
-    this->dd = 0.;
-    this->di = 0.;
+    this->dd = 0.01;
+    this->di = 0.0001;
     this->step = 0.05;
     this->taup = taup;
     this->taud = taud;
@@ -36,15 +37,17 @@ void PID::UpdateParams(double cte) {
         taup += dp;
     }
     else if (index == 1) {
-        if (cte < cte_ave) {
+        if (cte < cte_best) {
             dp *= (1. + step);
+            cte_best = cte;
         } else {
             taup -= 2. * dp;
         }
     }
     else if (index == 2) {
-        if (cte < cte_ave) {
+        if (cte < cte_best) {
             dp *= (1. + step);
+            cte_best = cte;
         } else {
             taup += dp;
             dp *= (1. - step);
@@ -54,15 +57,17 @@ void PID::UpdateParams(double cte) {
         taud += dd;
     }
     else if (index == 4) {
-        if (cte < cte_ave) {
+        if (cte < cte_best) {
             dd *= (1. + step);
+            cte_best = cte;
         } else {
             taud -= 2. * dd;
         }
     }
     else if (index == 5) {
-        if (cte < cte_ave) {
+        if (cte < cte_best) {
             dd *= (1. + step);
+            cte_best = cte;
         } else {
             taud += dd;
             dd *= (1. - step);
@@ -72,15 +77,17 @@ void PID::UpdateParams(double cte) {
         taui += di;
     }
     else if (index == 7) {
-        if (cte < cte_ave) {
+        if (cte < cte_best) {
             di *= (1. + step);
+            cte_best = cte;
         } else {
             taui -= 2. * di;
         }
     }
     else if (index == 8) {
-        if (cte < cte_ave) {
+        if (cte < cte_best) {
             di *= (1. + step);
+            cte_best = cte;
         } else {
             taui += di;
             di *= (1. - step);
@@ -90,7 +97,7 @@ void PID::UpdateParams(double cte) {
 
 void PID::UpdateError(double cte) {
     ++count;
-    cte_ave = (cte + cte_ave) / (double)count;
+    // cte_ave = (cte + cte_ave) / (double)count;
     if (!has_prev) {
         cte_prev = cte;
     }

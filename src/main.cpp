@@ -34,9 +34,9 @@ int main()
 
   PID pid;
   PID pid_speed;
-  double target_speed  = 20.;
+  double target_speed  = 10.;
   // TODO: Initialize the pid variable.
-  pid.Init(0.3, 0.00001, 0.00001);
+  pid.Init(0.3, 0.4, 0.0001);
   pid_speed.Init(0.2, 0.2, 0.);
 
   h.onMessage([&pid, &pid_speed, &target_speed](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -65,15 +65,8 @@ int main()
           */
           pid.UpdateError(cte);
           double diff = pid.TotalError();
-          // double threash = deg2rad(20.);
-          // if (diff > threash) {
-          //   diff = threash;
-          // }
-          // if (diff < -threash) {
-          //   diff = -threash;
-          // }
-          steer_value = -diff / deg2rad(25.);
           steer_value = -diff;
+
           pid_speed.UpdateError(speed_cte);
           throttle_value = pid_speed.TotalError();
 

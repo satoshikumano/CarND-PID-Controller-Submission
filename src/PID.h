@@ -13,8 +13,9 @@ public:
   double cte_prev;
   bool has_prev;
   double cte_sum;
+  double cte_best;
   long long count;
-  double cte_ave;
+  // double cte_ave;
   
   /*
   * Coefficients
