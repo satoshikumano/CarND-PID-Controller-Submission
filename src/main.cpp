@@ -38,8 +38,9 @@ int main()
   // TODO: Initialize the pid variable.
   pid.Init(0.03, 0.6, 0.0001);
   pid_speed.Init(0.2, 0.2, 0.);
+  double bias = 0.001;
 
-  h.onMessage([&pid, &pid_speed, &target_speed](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
+  h.onMessage([&pid, &pid_speed, &target_speed, &bias](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
     // The 2 signifies a websocket event
@@ -65,7 +66,7 @@ int main()
           */
           pid.UpdateError(cte);
           double diff = pid.TotalError();
-          steer_value = -diff;
+          steer_value = -diff + bias;
 
           pid_speed.UpdateError(speed_cte);
           throttle_value = pid_speed.TotalError();
