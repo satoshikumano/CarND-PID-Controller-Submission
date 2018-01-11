@@ -37,7 +37,7 @@ void PID::UpdateParams(double cte) {
         taup += dp;
     }
     else if (index == 1) {
-        if (cte < cte_best) {
+        if (fabs(cte) < fabs(cte_best)) {
             dp *= (1. + step);
             cte_best = cte;
         } else {
@@ -45,7 +45,7 @@ void PID::UpdateParams(double cte) {
         }
     }
     else if (index == 2) {
-        if (cte < cte_best) {
+        if (fabs(cte) < fabs(cte_best)) {
             dp *= (1. + step);
             cte_best = cte;
         } else {
@@ -57,7 +57,7 @@ void PID::UpdateParams(double cte) {
         taud += dd;
     }
     else if (index == 4) {
-        if (cte < cte_best) {
+        if (fabs(cte) < fabs(cte_best)) {
             dd *= (1. + step);
             cte_best = cte;
         } else {
@@ -65,7 +65,7 @@ void PID::UpdateParams(double cte) {
         }
     }
     else if (index == 5) {
-        if (cte < cte_best) {
+        if (fabs(cte) < fabs(cte_best)) {
             dd *= (1. + step);
             cte_best = cte;
         } else {
@@ -77,7 +77,7 @@ void PID::UpdateParams(double cte) {
         taui += di;
     }
     else if (index == 7) {
-        if (cte < cte_best) {
+        if (fabs(cte) < fabs(cte_best)) {
             di *= (1. + step);
             cte_best = cte;
         } else {
@@ -85,7 +85,7 @@ void PID::UpdateParams(double cte) {
         }
     }
     else if (index == 8) {
-        if (cte < cte_best) {
+        if (fabs(cte) < fabs(cte_best)) {
             di *= (1. + step);
             cte_best = cte;
         } else {
