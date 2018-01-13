@@ -15,6 +15,7 @@ Car won't turns until the CTE get large and when it turns, steering angle is too
 so that it makes zigzag driving and finally cause overshoot.
 
 Short [video](https://youtu.be/A6ItIZPolXY) shows how P controller works.
+
 (P = 0.2, I = 0, D = 0)
 
 
@@ -22,7 +23,8 @@ D controller makes counter steering proportional to the CTE difference.
 It helps to mitigate the issue of P controller described above.
 When the P controller makes a sharp turn, D controller makes a counter to it.
 
-Short [video](https://www.youtube.com/HrnMVpECeRI) shows how D controller mitigates the issue in P controller.
+Short [video](https://youtu.be/HrnMVpECeRI) shows how D controller mitigates the issue in P controller.
+
 (P = 0.2, I = 0, D = 0.4)
 
 Looks better. Further tuning and final parameters in next section with Twiddle.
