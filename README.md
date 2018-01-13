@@ -9,7 +9,18 @@ To control steering angle and speed, I used two PID controllers for steering and
 
 ## Hyperparameters optimization method
 
-I used Twiddle.
+I used Twiddle to tune parameters.
+After the params are settled, turned off Twiddle and use fixed parameters.
+Final parameters chosen:
+
+- coefficient of p: 0.0997
+- coefficient of d : 0.806523
+- coefficient of i : 0.000783966
+
+Observations in tuning initial parameters given to Twiddle:
+
+Higher coefficient of p makes cars running in a zigzag.
+So I set lower value to coefficient of p and higher value to coefficient of d.
 
 ## Check effect of I controllers
 
