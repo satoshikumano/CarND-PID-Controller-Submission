@@ -72,7 +72,9 @@ int main()
           throttle_value = pid_speed.TotalError();
 
           // DEBUG
+          std::cout << "count: " << pid.count << std::endl;
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          std::cout << "CTE ave: " << pid.cte_ave << std::endl;
           std::cout << "taup: " << pid.taup << std::endl;
           std::cout << "taui: " << pid.taui << std::endl;
           std::cout << "taud: " << pid.taud << std::endl;

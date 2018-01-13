@@ -14,7 +14,7 @@ PID::~PID() {}
 
 void PID::Init(double taup, double taud, double taui) {
     this->cte_sum = 0.;
-    // this->cte_ave = 0.;
+    this->cte_ave = 0.;
     this->cte_best = 100000.;
     this->count = 0;
     this->has_prev = false;
@@ -98,7 +98,7 @@ void PID::UpdateParams(double cte) {
 
 void PID::UpdateError(double cte) {
     ++count;
-    // cte_ave = (cte + cte_ave) / (double)count;
+
     if (!has_prev) {
         cte_prev = cte;
     }
@@ -107,6 +107,7 @@ void PID::UpdateError(double cte) {
     has_prev = true;
 
     cte_sum += cte;
+    cte_ave = cte_sum / (double)count;
     UpdateParams(cte);
 
     p_error = cte * taup;
