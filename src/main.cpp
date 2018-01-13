@@ -35,10 +35,13 @@ int main()
   PID pid;
   PID pid_speed;
   double target_speed  = 30.;
+
   // TODO: Initialize the pid variable.
-  pid.Init(0.03, 0.6, 0.0001);
+  pid.Init(0.0997, 0.806523, 0.000783966);
+  pid.twiddle_optimization = false;
+
   pid_speed.Init(0.2, 0.2, 0.);
-  double bias = 0.001;
+  double bias = 0;
 
   h.onMessage([&pid, &pid_speed, &target_speed, &bias](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.

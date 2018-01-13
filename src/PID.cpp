@@ -108,7 +108,9 @@ void PID::UpdateError(double cte) {
 
     cte_sum += cte;
     cte_ave = cte_sum / (double)count;
-    UpdateParams(cte);
+    if (twiddle_optimization) {
+        UpdateParams(cte);
+    }
 
     p_error = cte * taup;
     d_error = diff * taud;

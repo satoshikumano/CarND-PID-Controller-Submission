@@ -32,6 +32,7 @@ public:
   double dd;
   double step;
 
+  bool twiddle_optimization;
   /*
   * Constructor
   */
