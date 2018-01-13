@@ -25,11 +25,13 @@ When the P controller makes a sharp turn, D controller makes a counter to it.
 Short [video](https://www.youtube.com/HrnMVpECeRI) shows how D controller mitigates the issue in P controller.
 (P = 0.2, I = 0, D = 0.4)
 
+Looks better. Further tuning and final parameters in next section with Twiddle.
+
 I controller makes counter steering proportional to the sum of CTE.
 It is a countermeasure of systematic bias.
 For example, if the car alignment is not adjusted well and turn to bit right
-when steering angle is 0, sum of CTE will be increasing (decreasing, depending on how we define coordinate)
-because the CTE has a bias to the right turn.
+when steering angle is 0. Sum of CTE will be increasing (decreasing, depending on how we define coordinate)
+because the CTE is effected by a bias to the right turn.
 The experiment in this project is described in [the later section](#check-effect-of-i-controllers).
 
 ## Hyperparameters optimization method
@@ -41,6 +43,10 @@ Final parameters chosen:
 - coefficient of p: 0.0997
 - coefficient of d : 0.806523
 - coefficient of i : 0.000783966
+
+Initial parameters given to Twiddle was P: 0.03, D: 0.7, I: 0.0001.
+
+Since large P and I makes initial driving very unstable, I let Twiddle to gradually increase them.
 
 ## Check effect of I controllers
 
