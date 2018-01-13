@@ -54,4 +54,7 @@ Since large P and I makes initial driving very unstable, I let Twiddle to gradua
 
 Added `bias` parameter to test the steering I controllers and its optimization.
 Successfully drive around the course with bias = 0 and bias = 0.001 for the steering angle.
-Observed higher weight when setting bias to 0.001.
+
+When Twiddle tuning is turned on, higher weight for I when setting bias to 0.001.
+In the real project, Twiddle tuning for I will be turned on to know what's
+the systematic bias.
