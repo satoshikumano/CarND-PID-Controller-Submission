@@ -28,8 +28,9 @@ void PID::Init(double taup, double taud, double taui) {
 }
 
 void PID::UpdateParams(double cte) {
-    cout << "dp: " << dp << endl;
-    if (dp + dd + di < 0.0001) {
+    double sum = dp + dd + di;
+    cout << "dsum: " << sum << endl;
+    if (sum < 0.0001) {
         return;
     }
     int index = count % 9;
